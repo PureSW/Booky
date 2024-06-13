@@ -79,7 +79,7 @@ def search_book_isbn(book_name):
 
 @application.route('/rising', methods=['POST']) #대출 급상승 도서
 def rising():
-    #인증키 값 : 4ddb4f15df6d4e7530a785340f8483b435e9a20c774f78edbf27cde615d581cc
+    #인증키 값 : 
     
     # 현재 날짜와 시간을 가져옴
     now = datetime.now()
@@ -90,7 +90,7 @@ def rising():
     # 날짜를 yyyy-mm-dd 형식으로 포맷팅
     formatted_date = one_day_before.strftime("%Y-%m-%d")
     
-    api_url = "https://data4library.kr/api/hotTrend?authKey=4ddb4f15df6d4e7530a785340f8483b435e9a20c774f78edbf27cde615d581cc&searchDt="+ formatted_date
+    api_url = "https://data4library.kr/api/hotTrend?authKey=인증키값&searchDt="+ formatted_date
 
     response = requests.get(api_url)
 
@@ -161,7 +161,7 @@ def get_isbn_readKing(): #파라미터 받아오는 함수
 def readKing():
 
 
-    api_url = "http://data4library.kr/api/recommandList?authKey=4ddb4f15df6d4e7530a785340f8483b435e9a20c774f78edbf27cde615d581cc&type=reader&isbn13="+search_book_isbn(get_isbn_readKing())
+    api_url = "http://data4library.kr/api/recommandList?authKey=인증키값&type=reader&isbn13="+search_book_isbn(get_isbn_readKing())
 
     response = requests.get(api_url)
 
@@ -231,7 +231,7 @@ def get_isbn_mania(): #파라미터 받아오는 함수
 @application.route('/mania', methods=['POST']) #마니아 추천 도서
 def mania():
 
-    api_url = "http://data4library.kr/api/recommandList?authKey=4ddb4f15df6d4e7530a785340f8483b435e9a20c774f78edbf27cde615d581cc&type=mania&isbn13="+search_book_isbn(get_isbn_mania())
+    api_url = "http://data4library.kr/api/recommandList?authKey=인증키값&type=mania&isbn13="+search_book_isbn(get_isbn_mania())
 
     response = requests.get(api_url)
 
@@ -311,7 +311,7 @@ def byAge():
     formatted_month = one_month_before.strftime("%Y-%m-%d")
 
     #나이대 입력 받은 값으로 전환되도록 수정
-    api_url = "http://data4library.kr/api/loanItemSrch?authKey=4ddb4f15df6d4e7530a785340f8483b435e9a20c774f78edbf27cde615d581cc&startDt="+formatted_month+"+&age="+get_byAge()[0:2]+"&pageNo=1&pageSize=10"
+    api_url = "http://data4library.kr/api/loanItemSrch?authKey=인증키값&startDt="+formatted_month+"+&age="+get_byAge()[0:2]+"&pageNo=1&pageSize=10"
 
     response = requests.get(api_url)
 
@@ -391,7 +391,7 @@ def get_param():
 
 @application.route('/srchBooks', methods=['POST']) #키워드 기반 도서 검색
 def srchBooks():
-    api_url = "http://data4library.kr/api/srchBooks?authKey=4ddb4f15df6d4e7530a785340f8483b435e9a20c774f78edbf27cde615d581cc"+get_param()
+    api_url = "http://data4library.kr/api/srchBooks?authKey=인증키값"+get_param()
 
     response = requests.get(api_url)
 
@@ -465,7 +465,7 @@ def srchBooks():
 
 @application.route('/loanItemSrch', methods=['POST']) #인기대출도서 조회
 def loanItemSrch():
-    api_url = "http://data4library.kr/api/loanItemSrch?authKey=4ddb4f15df6d4e7530a785340f8483b435e9a20c774f78edbf27cde615d581cc"+get_param()
+    api_url = "http://data4library.kr/api/loanItemSrch?authKey=인증키값"+get_param()
 
     response = requests.get(api_url)
 
@@ -677,7 +677,7 @@ def recommandBooks():
 
     print(sentiment_keyword)
 
-    api_url = "http://data4library.kr/api/srchBooks?authKey=4ddb4f15df6d4e7530a785340f8483b435e9a20c774f78edbf27cde615d581cc&keyword=" + sentiment_keyword
+    api_url = "http://data4library.kr/api/srchBooks?authKey=인증키값&keyword=" + sentiment_keyword
 
     response = requests.get(api_url)
 
